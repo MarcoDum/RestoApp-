@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import CardList from "./CardList";
 import CircularProgress from "@material-ui/core/CircularProgress";
-const axios = require("axios");
+import axios from 'axios';
+
 
 class App extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class App extends Component {
 
   componentDidMount() {
     axios
-      .get("/restaurants?_limit=100")
+      .get("/restaurants?_limit=10")
       .then(response => {
         // handle success
         console.log(response.data);
