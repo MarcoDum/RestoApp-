@@ -61,7 +61,7 @@ class CardList extends Component {
                 {data.cat1Name}, {data.cat2Name}
               </p>
               <p>
-                {data.address1} {data.address2}
+                {data.address1}, {data.address2}
               </p>
               <ReactStars
                 value={data.rate}
