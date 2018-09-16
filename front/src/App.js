@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import CardList from "./CardList";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import axios from 'axios';
-
+import axios from "axios";
 
 class App extends Component {
   constructor(props) {

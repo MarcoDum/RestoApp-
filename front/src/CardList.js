@@ -15,42 +15,16 @@ class CardList extends Component {
     this.setState({ datas: nextProps.datas });
   }
 
-  getCleanRestaurant = datas => {
-    return datas
-      .map(data => ({
-        name: data.name,
-        address1: data.address1,
-        address2: data.address2,
-        image: data.image,
-        imageURL: data.image.url,
-        cat1Name: data.categorisation.primary.name,
-        cat2Name: data.categorisation.secondary.name,
-        rate: data.editorial_rating
-      }))
-      .filter(
-        data =>
-          data.name &&
-          data.address1 &&
-          data.address2 &&
-          data.image &&
-          data.imageURL &&
-          data.cat1Name &&
-          data.cat2Name &&
-          data.rate
-      )
-      .sort((a, b) => b.rate - a.rate);
-  };
-
   render() {
     return (
       <Media>
-        {this.getCleanRestaurant(this.state.datas).map((data, index) => (
+        {this.state.datas.map((data, index) => (
           <div key={index}>
             <Media.Left>
               <img
                 width={100}
                 height={80}
-                src={data.imageURL}
+                src={data.image_url}
                 alt="thumbnail"
               />
             </Media.Left>
@@ -58,13 +32,13 @@ class CardList extends Component {
             <Media.Body>
               <Media.Heading>{data.name}</Media.Heading>
               <p>
-                {data.cat1Name}, {data.cat2Name}
+                {data.mainCategory}, {data.secondaryCategory}
               </p>
               <p>
                 {data.address1}, {data.address2}
               </p>
               <ReactStars
-                value={data.rate}
+                value={data.editorial_rating}
                 count={5}
                 size={24}
                 color2={"#ffd700"}
