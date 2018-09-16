@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Media } from "react-bootstrap";
 import ReactStars from "react-stars";
 
+
 class CardList extends Component {
   constructor(props) {
     super(props);
