@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import CardList from "./CardList";
 import CircularProgress from "@material-ui/core/CircularProgress";
-const axios = require("axios");
+import axios from "axios";
+
+import CardList from "./CardList";
+import RestaurantsMap from './restautrantsMap'
+
 
 class App extends Component {
   constructor(props) {
@@ -13,7 +16,7 @@ class App extends Component {
 
   componentDidMount() {
     axios
-      .get("/restaurants?_limit=100")
+      .get("/restaurants?_limit=10")
       .then(response => {
         // handle success
         console.log(response.data);
@@ -37,6 +40,18 @@ class App extends Component {
         ) : (
           <CircularProgress />
         )}
+        {this.state.datas.length > 0 ? (
+          <RestaurantsMap
+    				datas={this.state.datas}
+	    			googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places`}
+	    			loadingElement={<div style={{ height: `100%` }} />}
+	    			containerElement={<div style={{ height: `600px`, width: `600px` }} />}
+	    			mapElement={<div style={{ height: `100%` }} />}
+	    		/>
+        ) : (
+          <CircularProgress />
+        )}
+
       </div>
     );
   }

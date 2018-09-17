@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Media } from "react-bootstrap";
 import ReactStars from "react-stars";
 
+
 class CardList extends Component {
   constructor(props) {
     super(props);
@@ -10,6 +11,7 @@ class CardList extends Component {
       hasError: false
     };
   }
+
   componentWillReceiveProps(nextProps) {
     this.setState({ datas: nextProps.datas });
   }
@@ -18,29 +20,23 @@ class CardList extends Component {
     return (
       <Media>
         {this.state.datas.map((data, index) => (
-          <div key={index} style={divStyle}>
+          <div key={index}>
             <Media.Left>
-              {data.image ? (
-                <img
-                  width={100}
-                  height={80}
-                  src={data.image.url}
-                  alt="thumbnail"
-                />
-              ) : (
-                <img
-                  width={100}
-                  height={80}
-                  src="http://images.math.cnrs.fr/IMG/png/section1-original.png"
-                  alt="thumbnail"
-                />
-              )}
+              <img
+                width={100}
+                height={80}
+                src={data.image_url}
+                alt="thumbnail"
+              />
             </Media.Left>
 
             <Media.Body>
               <Media.Heading>{data.name}</Media.Heading>
               <p>
-                {data.address1} {data.address2}
+                {data.mainCategory}, {data.secondaryCategory}
+              </p>
+              <p>
+                {data.address1}, {data.address2}
               </p>
               <ReactStars
                 value={data.editorial_rating}
@@ -56,8 +52,7 @@ class CardList extends Component {
     );
   }
 }
-const divStyle = {
-  // marginTop: "5px"
-};
 
 export default CardList;
+
+
