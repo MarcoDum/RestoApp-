@@ -44,9 +44,9 @@ const styles = theme => ({
   },
 });
 
-function Login(props) {
-  const { classes } = props;
-
+class Login extends React.Component {
+render() {
+  const { classes } = this.props;
   return (
     <React.Fragment>
       <CssBaseline />
@@ -97,6 +97,7 @@ function Login(props) {
       </main>
     </React.Fragment>
   );
+}
 }
 
 Login.propTypes = {
