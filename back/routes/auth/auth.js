@@ -9,14 +9,14 @@ router.use(bodyParser.json());
 
 
 router.post('/signup',(req, res, next) => {
-    const {email, password, name, lastname} = req.body[0];
+    const {email, password, name, lastname} = req.body;
     let data = [email, password, name, lastname];
-  connection.query('INSERT INTO users(email, password, name, lastname) VALUE (?,?,?,?)',
+  connection.query('INSERT INTO users(email, password, name, lastname) VALUES (?,?,?,?)',
   data, (error, results, fields) => {
     if (error)
-      res.status(500).send("ERRRRRROR");
+      res.status(500).send(error);
     else
-      res.status(200).send("YOUPI !");
+      res.status(201).send("youpi");
   })
 })
 
