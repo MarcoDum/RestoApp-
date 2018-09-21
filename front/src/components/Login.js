@@ -46,6 +46,53 @@ const styles = theme => ({
 });
 
 class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      post: {
+        email: "",
+        password1: ""
+      },
+      flash: "",
+      success: false,
+      open: false
+
+      // password2: ""
+    };
+    this.updateEmailField = this.updateEmailField.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  updateEmailField(e) {
+    this.setState({
+      post: {
+        ...this.state.post,
+        [e.target.id]: e.target.value
+      }
+    });
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+
+    fetch("/auth/signin", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json"
+      }),
+      body: JSON.stringify(this.state.post)
+    })
+      .then(res => res.json())
+      .then(
+        res =>
+          this.setState({
+            flash: res.flash,
+            open: true,
+            isAuthenticated: true
+          }),
+        this.notify(),
+        err => this.setState({ flash: err.flash })
+      );
+    // .then(this.props.history.push("/restaurants"));
+  }
   render() {
     const { classes } = this.props;
     return (
