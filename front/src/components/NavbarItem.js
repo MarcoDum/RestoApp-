@@ -18,6 +18,9 @@ class NavbarItem extends Component {
           <NavItem eventKey={1} href="/login">
             LOGIN
           </NavItem>
+          <NavItem eventKey={1} href="/register">
+            REGISTER
+          </NavItem>
           <NavItem eventKey={2} href="/map">
             CARTE
           </NavItem>
